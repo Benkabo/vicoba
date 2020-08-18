@@ -1,21 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import "react-native-gesture-handler";
+import React from "react";
+import { View, Text } from "react-native";
+
+import { ApolloProvider } from "@apollo/client";
+import makeApolloClient from "./src/Apollo";
+import SplashScreen from "./src/Screens/SplashScreen";
+import LoginScreen from "./src/Screens/LoginScreen";
+import RegisterScreen from "./src/Screens/RegisterScreen";
 
 export default function App() {
+  const client = makeApolloClient();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={{flex:1}}>
+      {/* <SplashScreen /> */}
+      {/* <LoginScreen /> */}
+      {/* <Text>Bene</Text> */}
+      <RegisterScreen />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
