@@ -40,8 +40,16 @@ const ADD_USER = gql`
 `;
 
 export default function RegisterScreen() {
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [group, setGroup] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [enableShift, setEnableShift] = useState(false);
 
-  const [addUser] = useMutation(ADD_USER)
+  const [addUser] = useMutation(ADD_USER);
+
   const onRegisterPress = () => {
     Firebase.auth()
       .createUserWithEmailAndPassword(email, password)
@@ -65,18 +73,10 @@ export default function RegisterScreen() {
           console.log("User details", updateProfile);
         } catch (error) {
           console.log("Exception", error);
-          Alert.alert('Error', error.message)
+          Alert.alert("Error", error.message);
         }
       });
   };
-
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [group, setGroup] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [enableShift, setEnableShift] = useState(false);
 
   const theme = {
     colors: {
