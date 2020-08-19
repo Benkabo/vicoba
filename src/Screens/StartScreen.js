@@ -1,22 +1,26 @@
-import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import Colors from '../../Colors'
+import React from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import Colors from "../../Colors";
 
-
-export default function StartScreen({navigation}) {
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('login')} >
+export default function StartScreen({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("login")}
+      >
         <Text style={styles.text}>INGIA</Text>
-        </TouchableOpacity>
-        <View style={styles.account}>
-        <Text style={{ color: Colors.black, fontSize: 18 }}>Hauna akaunti?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('register')}>
+      </TouchableOpacity>
+      <View style={styles.account}>
+        <Text style={{ color: Colors.black, fontSize: 18 }}>
+          Hauna akaunti?
+        </Text>
+        <TouchableOpacity onPress={() => navigation.navigate("register")}>
           <Text style={styles.button1}>TENGENEZA AKAUNTI</Text>
         </TouchableOpacity>
       </View>
-      </View>
-    )
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -47,4 +51,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: 10,
   },
-})
+});
