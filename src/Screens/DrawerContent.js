@@ -1,25 +1,11 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import {
-  useTheme,
-  Avatar,
-  Title,
-  Caption,
-  Paragraph,
-  Drawer,
-  Text,
-  TouchableRipple,
-  Switch,
-} from "react-native-paper";
+import { Drawer, Text, TouchableRipple, Switch } from "react-native-paper";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export function DrawerContent(props) {
-  const paperTheme = useTheme();
-
-  const { signOut, toggleTheme } = React.useContext(AuthContext);
-
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
@@ -29,25 +15,25 @@ export function DrawerContent(props) {
               icon={({ color, size }) => (
                 <Icon name="home-outline" color={color} size={size} />
               )}
-              label="Home"
+              label="NYUMBANI"
               onPress={() => {
-                props.navigation.navigate("Home");
+                props.navigation.navigate("Homepage");
               }}
             />
             <DrawerItem
               icon={({ color, size }) => (
                 <Icon name="account-outline" color={color} size={size} />
               )}
-              label="Profile"
+              label="ONGEZA AKAUNTI"
               onPress={() => {
-                props.navigation.navigate("Profile");
+                props.navigation.navigate("AddAccount");
               }}
             />
             <DrawerItem
               icon={({ color, size }) => (
                 <Icon name="bookmark-outline" color={color} size={size} />
               )}
-              label="Bookmarks"
+              label="AKAUNTI YANGU"
               onPress={() => {
                 props.navigation.navigate("BookmarkScreen");
               }}
@@ -56,7 +42,7 @@ export function DrawerContent(props) {
               icon={({ color, size }) => (
                 <Icon name="settings-outline" color={color} size={size} />
               )}
-              label="Settings"
+              label="TAARIFA"
               onPress={() => {
                 props.navigation.navigate("SettingsScreen");
               }}
@@ -65,25 +51,11 @@ export function DrawerContent(props) {
               icon={({ color, size }) => (
                 <Icon name="account-check-outline" color={color} size={size} />
               )}
-              label="Support"
+              label="SIMAMIA AKAUNTI"
               onPress={() => {
                 props.navigation.navigate("SupportScreen");
               }}
             />
-          </Drawer.Section>
-          <Drawer.Section title="Preferences">
-            <TouchableRipple
-              onPress={() => {
-                toggleTheme();
-              }}
-            >
-              <View style={styles.preference}>
-                <Text>Dark Theme</Text>
-                <View pointerEvents="none">
-                  <Switch value={paperTheme.dark} />
-                </View>
-              </View>
-            </TouchableRipple>
           </Drawer.Section>
         </View>
       </DrawerContentScrollView>
@@ -92,7 +64,7 @@ export function DrawerContent(props) {
           icon={({ color, size }) => (
             <Icon name="exit-to-app" color={color} size={size} />
           )}
-          label="Sign Out"
+          label="KUTOKA"
           onPress={() => {
             signOut();
           }}
