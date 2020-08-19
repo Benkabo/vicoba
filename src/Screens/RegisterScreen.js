@@ -1,10 +1,75 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, KeyboardAvoidingView, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  KeyboardAvoidingView,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 
-import { TextInput } from 'react-native-paper'
+import { TextInput } from "react-native-paper";
 import Colors from "../../Colors";
 
+import Firebase from "../utils/Firebase";
+import { gql, useMutation } from "@apollo/client";
+
+// GraphQL queries
+const ADD_USER = gql`
+  mutation insert_users_one(
+    $email: String!
+    $firstname: String!
+    $group: String!
+    $id: String!
+    $lastname: String!
+    $phone: String!
+  ) {
+    insert_users(
+      objects: {
+        email: $email
+        firstname: $firstname
+        id: $id
+        group: $group
+        lastname: $lastname
+        phone: $phone
+      }
+    ) {
+      affected_rows
+    }
+  }
+`;
+
 export default function RegisterScreen() {
+
+  const [addUser] = useMutation(ADD_USER)
+  const onRegisterPress = () => {
+    Firebase.auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(async (response) => {
+        let user = Firebase.auth().currentUser;
+        try {
+          const updateProfile = await user.updateProfile({
+            displayName: firstname,
+          });
+          const updateUserData = await addUser({
+            variables: {
+              firstname,
+              lastname,
+              email,
+              phone,
+              group,
+              id: user.uid,
+            },
+          });
+          console.log("User database details", updateUserData);
+          console.log("User details", updateProfile);
+        } catch (error) {
+          console.log("Exception", error);
+          Alert.alert('Error', error.message)
+        }
+      });
+  };
+
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [phone, setPhone] = useState("");

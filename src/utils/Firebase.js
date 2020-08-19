@@ -1,14 +1,14 @@
 import * as firebase from "firebase";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_NATIVE_APP_API_KEY,
-  authDomain: process.env.REACT_NATIVE_APP_FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_NATIVE_APP_FIREBASE_DATABASE_URL,
-  projectId: process.env.REACT_NATIVE_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_NATIVE_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_NATIVE_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_NATIVE_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_NATIVE_APP_FIREBASE_MEASUREMENT_ID,
+  apiKey: "AIzaSyAY_cuxBJkTIEeSwnwtKkNmd3ISJ-rmU8M",
+  authDomain: "vicoba-95107.firebaseapp.com",
+  databaseURL: "https://vicoba-95107.firebaseio.com",
+  projectId: "vicoba-95107",
+  storageBucket: "vicoba-95107.appspot.com",
+  messagingSenderId: "472618091013",
+  appId: "1:472618091013:web:10dfad383b768f614e126c",
+  measurementId: "G-384EWCBVYP",
 };
 
 const Firebase = firebase.initializeApp(firebaseConfig);
