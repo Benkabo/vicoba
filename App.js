@@ -16,19 +16,6 @@ import AddAccount from "./src/components/AddAccount";
 
 const Drawer = createDrawerNavigator();
 
-<<<<<<< Updated upstream
-const FETCH_USER = gql`
-  query fetchUser($id: String!) {
-    users(where: { id: { _eq: $id } }) {
-      firstname
-      lastname
-    }
-  }
-`;
-<<<<<<< Updated upstream
-const client = makeApolloClient();
-=======
-
 // const Route = () => {
 //   const firebase = Firebase;
 //   const [user, setUser] = useState(null);
@@ -76,37 +63,18 @@ const client = makeApolloClient();
 //     return <MainStackNavigator />;
 //   }
 // };
-=======
+
 const client = makeApolloClient();
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
 export default function App() {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
-<<<<<<< Updated upstream
-        {/* <AuthStackNavigator /> */}
-        {/* <MainStackNavigator /> */}
-        {/* <Route /> */}
-        {/* <DrawerContent /> */}
-<<<<<<< Updated upstream
-=======
-        <Drawer.Navigator
-          drawerContent={(props) => <DrawerContent {...props} />}
-        >
-          <Drawer.Screen name='' component={} />
-        </Drawer.Navigator>
-=======
->>>>>>> Stashed changes
+
      <Drawer.Navigator drawerContent={(props) => <DrawerContent  {...props} />}>
        <Drawer.Screen name="Homepage" component={MainStackNavigator} />
        <Drawer.Screen name='AddAccount' component={AddAccount} />
      </Drawer.Navigator>
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
       </NavigationContainer>
     </ApolloProvider>
   );
