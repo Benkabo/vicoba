@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   StyleSheet,
   Text,
@@ -13,6 +13,8 @@ import Colors from "../../Colors";
 
 import Firebase from "../utils/Firebase";
 import { gql, useMutation } from "@apollo/client";
+import Splash from "./Splash";
+import { AuthContext } from "../Navigation/AuthProvider";
 
 // GraphQL queries
 const ADD_USER = gql`
@@ -39,18 +41,20 @@ const ADD_USER = gql`
   }
 `;
 
-export default function RegisterScreen() {
+export default function RegisterScreen({ navigation }) {
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [group, setGroup] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const [enableShift, setEnableShift] = useState(false);
 
   const [addUser] = useMutation(ADD_USER);
-
-  const onRegisterPress = () => {
+  const { onRegisterPress } = useContext(AuthContext);
+  const onRegisterPress1 = () => {
+    setLoading(true);
     Firebase.auth()
       .createUserWithEmailAndPassword(email, password)
       .then(async (response) => {
@@ -75,6 +79,26 @@ export default function RegisterScreen() {
           console.log("Exception", error);
           Alert.alert("Error", error.message);
         }
+        Firebase.database()
+          .ref()
+          .child("users/")
+          .child(user.uid)
+          .set({
+            firstname,
+            lastname,
+            email,
+            password,
+            phone,
+            group,
+          })
+          .then(() => {
+            setLoading(false);
+            navigation.navigate("login");
+          })
+          .catch((error) => {
+            setLoading(false);
+            alert(error);
+          });
       });
   };
 
@@ -84,7 +108,9 @@ export default function RegisterScreen() {
     },
   };
 
-  return (
+  return loading ? (
+    <Splash />
+  ) : (
     <KeyboardAvoidingView
       behavior="position"
       style={styles.container}
@@ -155,7 +181,9 @@ export default function RegisterScreen() {
         <View style={styles.button}>
           <TouchableOpacity
             style={styles.signin}
-            onPress={() => onRegisterPress()}
+            onPress={() => {
+              onRegisterPress() || onRegisterPress1();
+            }}
           >
             <Text
               style={{

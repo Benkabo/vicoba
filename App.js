@@ -13,69 +13,53 @@ import MainStackNavigator from "./src/Navigation/MainStack";
 import Splash from "./src/Screens/Splash";
 import { DrawerContent } from "./src/Screens/DrawerContent";
 import AddAccount from "./src/components/AddAccount";
-
+import { AuthProvider, AuthContext } from "./src/Navigation/AuthProvider";
+import Route from "./src/Navigation/Route";
+import MyAccount from "./src/components/MyAccount";
+import Infomation from "./src/components/Infomation";
+console.disableYellowBox = true;
 const Drawer = createDrawerNavigator();
-
-// const Route = () => {
-//   const firebase = Firebase;
-//   const [user, setUser] = useState(null);
-//   const [authState, setAuthState] = useState({ status: "loading" });
-//   const [getUser] = useLazyQuery(FETCH_USER);
-
-//   useEffect(() => {
-//     return firebase.auth().onAuthStateChanged(async (user) => {
-//       if (user) {
-//         const token = await user.getIdToken();
-//         const idTokenResult = await user.getIdTokenResult();
-//         const userFinal = await getUser(user.uid);
-
-//         console.log("User fetched: ", userFinal);
-//         const hasuraClaims =
-//           idTokenResult.claims["https://hasura.io/jwt/claims"];
-
-//         if (hasuraClaims) {
-//           setAuthState({ status: "in", user, token });
-//         } else {
-//           const metadataRef = firebase
-//             .database()
-//             .ref("metadata/" + user.uid + "/refreshTime");
-
-//           metadataRef.on("value", async (data) => {
-//             if (!data.exists) return;
-//             const token = await user.getIdToken(true);
-//             console.log("The current user data", data);
-//             setAuthState({ status: "in", user, token });
-//           });
-//         }
-//       } else {
-//         setAuthState({ status: "out" });
-//       }
-//     });
-//   }, []);
-
-//   if (authState.status === "loading") {
-//     return <Splash />;
-//   }
-//   if (authState.status === "out") {
-//     return <AuthStackNavigator />;
-//   }
-//   if (authState.status === "in") {
-//     return <MainStackNavigator />;
-//   }
-// };
 
 const client = makeApolloClient();
 
 export default function App() {
+  // const { user, setUser } = useContext(AuthContext);
+  // const [loading, setLoading] = useState(true);
+  // const [initializing, setInitializing] = useState(true);
+
+  // function onAuthStateChange(user) {
+  //   setUser(user);
+  //   if (initializing) setInitializing(false);
+  //   setLoading(false);
+  // }
+
+  // useEffect(() => {
+  //   const subscriber = Firebase.auth().onAuthStateChanged(onAuthStateChange);
+  //   return subscriber;
+  // }, []);
+
+  // if (loading) {
+  //   return <Splash />;
+  // }
   return (
     <ApolloProvider client={client}>
-      <NavigationContainer>
-
-     <Drawer.Navigator drawerContent={(props) => <DrawerContent  {...props} />}>
-       <Drawer.Screen name="Homepage" component={MainStackNavigator} />
-       <Drawer.Screen name='AddAccount' component={AddAccount} />
-     </Drawer.Navigator>
-      </NavigationContainer>
+      <AuthProvider>
+       <NavigationContainer>
+          {/* {user ? ( */}
+            <Drawer.Navigator
+              drawerContent={(props) => <DrawerContent {...props} />}
+            >
+              <Drawer.Screen name="Homepage" component={MainStackNavigator} />
+              <Drawer.Screen name="AddAccount" component={AddAccount} />
+              <Drawer.Screen name="MyAccount" component={MyAccount} />
+              <Drawer.Screen name="Info" component={Infomation} />
+            </Drawer.Navigator>
+           {/* ) : (
+            <AuthStackNavigator />
+           )} */}
+        </NavigationContainer> 
+        {/* // <Route />  */}
+      </AuthProvider>
     </ApolloProvider>
   );
 }

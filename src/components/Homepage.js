@@ -3,12 +3,12 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import Colors from "../../Colors";
 
-export default function Homepage() {
+export default function Homepage({navigation}) {
   return (
     <View style={styles.container}>
       <View style={styles.header}></View>
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Loan') }>
           <Text style={[styles.text, { marginRight: 200 }]}>MKOPO</Text>
           <AntDesign name="pluscircleo" size={22} color="white" />
         </TouchableOpacity>
@@ -18,12 +18,12 @@ export default function Homepage() {
           <AntDesign name="pluscircleo" size={22} color="white" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Bima')} >
           <Text style={[styles.text, { marginRight: 220 }]}>BIMA</Text>
           <AntDesign name="pluscircleo" size={22} color="white" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Jamii')}>
           <Text style={[styles.text, { marginRight: 120 }]}>
             MFUKO WA JAMII
           </Text>

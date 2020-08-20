@@ -1,25 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { StyleSheet, View, TouchableOpacity, Text, Alert } from "react-native";
 import { TextInput } from "react-native-paper";
 import Colors from "../../Colors";
 
 import Firebase from "../utils/Firebase";
+import Splash from "./Splash";
+import { AuthContext } from "../Navigation/AuthProvider";
 
-export default function LoginScreen() {
-  const onLoginPress = () => {
-    Firebase.auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        const uid = response.user.uid;
-      })
-      .catch((error) => {
-        alert(error);
-        Alert.alert('Error', error.message)
-      });
-  };
-
+export default function LoginScreen({navigation}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const onLoginPress = () => {
+    setLoading(true);
+    Firebase.auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(({ user }) => {
+        Firebase.database()
+          .ref()
+          .child("uers/")
+          .child(user.uid)
+          .on("value", (doc) => {
+            setLoading(false)
+            alert('User loged in successfull')
+          });
+          navigation.navigate('Homepage')
+      })
+      .catch((error) => {
+        setLoading(false);
+        alert(error);
+      });
+  };
 
   const theme = {
     colors: {

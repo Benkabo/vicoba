@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet } from "react-native";
 import { Drawer, Text, TouchableRipple, Switch } from "react-native-paper";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import Firebase from "../utils/Firebase";
+import { AuthContext } from "../Navigation/AuthProvider";
 
 export function DrawerContent(props) {
+  const { signOut } = useContext(AuthContext);
+
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
@@ -35,7 +39,7 @@ export function DrawerContent(props) {
               )}
               label="AKAUNTI YANGU"
               onPress={() => {
-                props.navigation.navigate("BookmarkScreen");
+                props.navigation.navigate("MyAccount");
               }}
             />
             <DrawerItem
@@ -44,7 +48,7 @@ export function DrawerContent(props) {
               )}
               label="TAARIFA"
               onPress={() => {
-                props.navigation.navigate("SettingsScreen");
+                props.navigation.navigate("Info");
               }}
             />
             <DrawerItem
@@ -83,7 +87,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    marginTop: 3,
+    marginTop: 23,
     fontWeight: "bold",
   },
   caption: {
