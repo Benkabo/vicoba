@@ -52,8 +52,7 @@ export default function RegisterScreen({ navigation }) {
   const [enableShift, setEnableShift] = useState(false);
 
   const [addUser] = useMutation(ADD_USER);
-  const { onRegisterPress } = useContext(AuthContext);
-  const onRegisterPress1 = () => {
+  const onRegisterPress = () => {
     setLoading(true);
     Firebase.auth()
       .createUserWithEmailAndPassword(email, password)
@@ -168,6 +167,7 @@ export default function RegisterScreen({ navigation }) {
           mode="outlined"
           theme={theme}
           style={{ marginBottom: 10 }}
+          onFocus={() => setEnableShift(true)}
           value={group}
           onChangeText={(val) => setGroup(val)}
         />
@@ -181,9 +181,7 @@ export default function RegisterScreen({ navigation }) {
         <View style={styles.button}>
           <TouchableOpacity
             style={styles.signin}
-            onPress={() => {
-              onRegisterPress() || onRegisterPress1();
-            }}
+            onPress={() => onRegisterPress()}
           >
             <Text
               style={{

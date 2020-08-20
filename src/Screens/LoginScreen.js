@@ -7,7 +7,7 @@ import Firebase from "../utils/Firebase";
 import Splash from "./Splash";
 import { AuthContext } from "../Navigation/AuthProvider";
 
-export default function LoginScreen({navigation}) {
+export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -22,10 +22,10 @@ export default function LoginScreen({navigation}) {
           .child("uers/")
           .child(user.uid)
           .on("value", (doc) => {
-            setLoading(false)
-            alert('User loged in successfull')
+            setLoading(false);
+            alert("User loged in successfull");
+            navigation.navigate("Homepage");
           });
-          navigation.navigate('Homepage')
       })
       .catch((error) => {
         setLoading(false);
@@ -39,7 +39,9 @@ export default function LoginScreen({navigation}) {
     },
   };
 
-  return (
+  return loading ? (
+    <Splash />
+  ) : (
     <View style={styles.container}>
       <TextInput
         label="Email"

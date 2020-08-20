@@ -5,6 +5,9 @@ import RegisterScreen from "../Screens/RegisterScreen";
 import LoginScreen from "../Screens/LoginScreen";
 import StartScreen from "../Screens/StartScreen";
 import Colors from "../../Colors";
+import Homepage from "../components/Homepage";
+import MainStackNavigator from "./MainStack";
+import DrawerBar from "../../App";
 
 const AuthStack = createStackNavigator();
 export default function AuthStackNavigator() {
@@ -34,6 +37,11 @@ export default function AuthStackNavigator() {
         name="register"
         component={RegisterScreen}
         options={{ title: "TENGENEZA KUNDI" }}
+      />
+       <AuthStack.Screen
+        name="Homepage"
+        component={DrawerBar}
+        options={{ title: "KARIBU" }}
       />
     </AuthStack.Navigator>
   );
