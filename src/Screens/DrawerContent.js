@@ -4,11 +4,13 @@ import { Drawer, Text, TouchableRipple, Switch } from "react-native-paper";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import Firebase from "../utils/Firebase";
-import { AuthContext } from "../Navigation/AuthProvider";
+import Firebase from "../utils/Firebase";;
 
 export function DrawerContent(props) {
-  const { signOut } = useContext(AuthContext);
+  const signOut = () => {
+    Firebase.auth().signOut()
+    props.navigation.navigate('login')
+  }
 
   return (
     <View style={{ flex: 1 }}>
@@ -57,7 +59,7 @@ export function DrawerContent(props) {
               )}
               label="SIMAMIA AKAUNTI"
               onPress={() => {
-                props.navigation.navigate("SupportScreen");
+                props.navigation.navigate("Account");
               }}
             />
           </Drawer.Section>

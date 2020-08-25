@@ -44,7 +44,7 @@ export default function LoginScreen({ navigation }) {
   ) : (
     <View style={styles.container}>
       <TextInput
-        label="Email"
+        label="Barua pepe"
         mode="outlined"
         theme={theme}
         style={styles.input}
@@ -54,7 +54,7 @@ export default function LoginScreen({ navigation }) {
         left={<TextInput.Icon name="email" color={Colors.lightblue} />}
       />
       <TextInput
-        label="Password"
+        label="Nywila"
         mode="outlined"
         theme={theme}
         secureTextEntry
@@ -67,7 +67,7 @@ export default function LoginScreen({ navigation }) {
         }
       />
       <TouchableOpacity style={styles.button} onPress={() => onLoginPress()}>
-        <Text style={styles.buttonTitle}>Login</Text>
+        <Text style={styles.buttonTitle}>Ingia</Text>
       </TouchableOpacity>
     </View>
   );

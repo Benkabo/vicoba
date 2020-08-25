@@ -18,7 +18,7 @@ export default function AddAccount() {
   return (
     <View style={styles.container}>
       <TextInput
-        label="Firstname"
+        label="Jina la kwanza"
         mode="outlined"
         theme={theme}
         style={{ marginBottom: 10 }}
@@ -26,7 +26,7 @@ export default function AddAccount() {
         onChangeText={(val) => setFirstName(val)}
       />
       <TextInput
-        label="Lastname"
+        label="Jina la mwisho"
         mode="outlined"
         theme={theme}
         style={{ marginBottom: 10 }}
@@ -34,7 +34,7 @@ export default function AddAccount() {
         onChangeText={(val) => setLastName(val)}
       />
       <TextInput
-        label="Email"
+        label="Barua pepe"
         mode="outlined"
         theme={theme}
         style={{ marginBottom: 10 }}
@@ -42,7 +42,7 @@ export default function AddAccount() {
         onChangeText={(val) => setPhone(val)}
       />
       <TextInput
-        label="Password"
+        label="Neno siri"
         mode="outlined"
         theme={theme}
         style={{ marginBottom: 10 }}
@@ -59,7 +59,7 @@ export default function AddAccount() {
               color: Colors.darkWhite,
             }}
           >
-            ADD
+            ONGEZA MWANACHAMA
           </Text>
         </TouchableOpacity>
       </View>

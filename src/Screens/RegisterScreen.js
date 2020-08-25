@@ -14,7 +14,6 @@ import Colors from "../../Colors";
 import Firebase from "../utils/Firebase";
 import { gql, useMutation } from "@apollo/client";
 import Splash from "./Splash";
-import { AuthContext } from "../Navigation/AuthProvider";
 
 // GraphQL queries
 const ADD_USER = gql`
@@ -144,7 +143,7 @@ export default function RegisterScreen({ navigation }) {
           onChangeText={(val) => setPhone(val)}
         />
         <TextInput
-          label="Email"
+          label="Barua pepe"
           mode="outlined"
           theme={theme}
           style={{ marginBottom: 10 }}
@@ -154,7 +153,7 @@ export default function RegisterScreen({ navigation }) {
           autoCapitalize="none"
         />
         <TextInput
-          label="Neno la siri"
+          label="Neno la siri/Nywila"
           mode="outlined"
           theme={theme}
           style={{ marginBottom: 10 }}

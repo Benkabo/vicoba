@@ -8,6 +8,7 @@ import Colors from "../../Colors";
 import Homepage from "../components/Homepage";
 import MainStackNavigator from "./MainStack";
 import DrawerBar from "../../App";
+import DrawerAuth from "./DrawerAuth";
 
 const AuthStack = createStackNavigator();
 export default function AuthStackNavigator() {
@@ -40,7 +41,7 @@ export default function AuthStackNavigator() {
       />
        <AuthStack.Screen
         name="Homepage"
-        component={DrawerBar}
+        component={DrawerAuth}
         options={{ title: "KARIBU" }}
       />
     </AuthStack.Navigator>
